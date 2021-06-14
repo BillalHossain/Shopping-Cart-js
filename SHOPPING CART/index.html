@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="index.png">
+
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/d472097d6a.js" crossorigin="anonymous"></script>
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <!-- additional -->
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <section class="full">
+        <div class="belly py-4">
+            <div class="row">
+                <div class="col-10 mx-auto my-3 line">
+
+                    <img src="picture/iphone11-black-select-2019.jpg" alt="">
+                    <span class="ps-4 iphone">iphone 11 128GB Black</span>
+                   <button id="minus" class="btns first"> <i class="fas fa-minus fa"></i></button>
+                   <span class="amount">1</span>
+                   <button id="plus" class="btns"> <i class="fas fa-plus fa"></i></button>
+                    <span class="ms-5">$<span id="dollar">1219</span></span>
+                    <i class="fas fa-times cross"></i>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-10 py-4 mx-auto my-3 line">
+                    <img src="picture/MWVU2.jpg" alt="">
+                    <div class="d-inline-block text">
+                    <span class="iphone">iphone 11 silicone case-Black</span>
+                </div>
+                   <button id="minus2" class="btns first"> <i class="fas fa-minus fa"></i></button>
+                   <span class="amount2">1</span>
+                   <button id="plus2" class="btns"> <i class="fas fa-plus fa"></i></button>
+                    <span class="ms-5"> $ <span id="dollar2">59</span></span>
+                    <i class="fas fa-times cross"></i>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-10 mx-auto my-3 line px-5">
+            <div class="flex d-flex justify-content-between">
+                <div class="left">
+                    <p>Subtotal:</p>
+                    <p>Tax:</p>
+                    <p>Total:</p>
+                </div>
+                <div class="right">
+                   <p id="sub">$1278</p>
+                   <p id="tax">$0</p>
+                   <p id="total">$1278</p>
+                </div>
+            </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-10 mx-auto">
+                    <div class="content d-flex justify-content-end">
+                        <button class="btn btn-success">Check Out</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+<!-- javascript -->
+<script>
+
+function handleNewPhone(increase,amount,dollar){
+    var amounts=document.querySelector(amount).innerText;
+    var amountParse=parseInt(amounts);
+if(increase==plus){
+    var quantity=amountParse+1;
+}
+if(increase==minus && amountParse>0){
+    var quantity=amountParse-1;
+}
+  
+    document.querySelector(amount).innerText=quantity;
+    // dollar
+    if(dollar=="dollar"){
+        var prize=1219*quantity;
+    }
+    
+    if(dollar=="dollar2"){
+        var prize=59*quantity;
+    }
+    
+    document.getElementById(dollar).innerText=prize;
+    subto();
+}
+
+var plusbtn=document.getElementById("plus");
+plusbtn.addEventListener("click",function(){
+    handleNewPhone(plus,".amount","dollar")
+    
+})
+
+var minusbtn=document.getElementById("minus");
+minusbtn.addEventListener("click",function(){
+  handleNewPhone(minus,".amount","dollar")
+
+})
+
+
+// function2
+
+
+var plusbtn2=document.getElementById("plus2");
+plusbtn2.addEventListener("click",function(){
+    handleNewPhone(plus,".amount2","dollar2")
+    
+    
+})
+var minusbtn2=document.getElementById("minus2");
+minusbtn2.addEventListener("click",function(){
+    handleNewPhone(minus,".amount2","dollar2")
+
+    
+})
+
+
+// subtotal and total
+
+
+
+
+function subto(){
+    var amountParse=select(".amount")
+    var amountParse2=select(".amount2")
+var subtotal=amountParse*1219+amountParse2*59;
+document.getElementById("sub").innerText="$"+subtotal;
+
+ var totaltax=Math.round(subtotal*0.1);
+document.getElementById("tax").innerText="$"+totaltax;
+
+var fulltotal=subtotal+totaltax;
+document.getElementById("total").innerText="$"+fulltotal;
+
+}
+function select(amount){
+    var amounts=document.querySelector(amount).innerText;
+var amountParseAll=parseInt(amounts);
+return amountParseAll;
+}
+
+
+
+
+
+
+
+
+
+// function handlePhone(increase){
+//     var amount=document.querySelector(".amount").innerText;
+//     var amountParse=parseInt(amount);
+// if(increase==plus){
+//     var quantity=amountParse+1;
+// }
+// if(increase==minus && amountParse>0){
+//     var quantity=amountParse-1;
+// }
+  
+//     document.querySelector(".amount").innerText=quantity;
+//     // dollar
+//     var prize=1219*quantity;
+//     document.getElementById("dollar").innerText=prize;
+// }
+
+// var plusbtn=document.getElementById("plus");
+// plusbtn.addEventListener("click",function(){
+//     handlePhone(plus)
+    
+// })
+
+// var minusbtn=document.getElementById("minus");
+// minusbtn.addEventListener("click",function(){
+//   handlePhone(minus)
+
+// })
+
+
+// // function2
+// function handlePhoneCover(increase){
+//     var amount2=document.querySelector(".amount2").innerText;
+//     var amountParse=parseInt(amount2);
+// if(increase==plus){
+//     var quantity=amountParse+1;
+// }
+// if(increase==minus && amountParse>0){
+//     var quantity=amountParse-1;
+// }
+  
+//     document.querySelector(".amount2").innerText=quantity;
+//     // dollar
+//     var prize=59*quantity;
+//     document.getElementById("dollar2").innerText=prize;
+// }
+
+// var plusbtn2=document.getElementById("plus2");
+// plusbtn2.addEventListener("click",function(){
+//     handlePhoneCover(plus)
+    
+// })
+// var minusbtn2=document.getElementById("minus2");
+// minusbtn2.addEventListener("click",function(){
+//     handlePhoneCover(minus)
+    
+// })
+
+// var plusbtn=document.getElementById("plus");
+// plusbtn.addEventListener("click",function(){
+    
+//     var amount=document.querySelector(".amount").innerText;
+//     var amountParse=parseInt(amount);
+//     var quantity=amountParse+1;
+//     document.querySelector(".amount").innerText=quantity;
+
+//     // dollar
+//     var prize=1219*quantity;
+//     document.getElementById("dollar").innerText=prize;
+// })
+
+// var minusbtn=document.getElementById("minus");
+// minusbtn.addEventListener("click",function(){
+//     var amount=document.querySelector(".amount").innerText;
+//     var amountParse=parseInt(amount);
+//     var quantityMinus=amountParse-1;
+//     console.log(quantityMinus);
+//     document.querySelector(".amount").innerText=quantityMinus;
+
+//     var prizeMinus=1219*quantityMinus;
+//      document.getElementById("dollar").innerText=prizeMinus;
+
+
+// })
+
+
+</script>
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>
